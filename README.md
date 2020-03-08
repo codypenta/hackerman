@@ -1,6 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hackerman
 
-Styling is Tailwinds CSS which was configured by following [this blog](https://blog.logrocket.com/create-react-app-and-tailwindcss/)
+This is a Hacker News clone courtesy of [Road to React](https://www.roadtoreact.com/). My motivation behind this is that I often found myself working with two major Javascript/Typescript products: [AWS Amplify with React](https://aws.amazon.com/amplify/) and [AWS CDK](https://aws.amazon.com/cdk/). Both use typescript, both use props, both use a declarative syntax. But I found myself not quite understanding React and Typescript at a fundamental/production level when working with these libraries. Thus I wanted to create a short, but documented example of an application that I can consistently use as a reference when working on other projects....hence...introducing...hackerman.
+
+![hackerman](hackerman.jpg)
+
+## Styling
+
+I was interested in the upcoming [Tailwind UI](https://tailwindui.com/), so I decided to use tailwinds as my functional css choice. Here are a few of my resources I used to style the components
+
+- [Configuration Create-React-App for Tailwinds](https://blog.logrocket.com/create-react-app-and-tailwindcss/)
+- [Tailwind Starter Kit](https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation)
+- [Awesome Tailwind](https://github.com/aniftyco/awesome-tailwindcss)
+- [Tailwind Docs](https://tailwindcss.com/docs/installation/)
+
+## React Bootstrap
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
