@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Styling is Tailwinds CSS which was configured by following [this blog](https://blog.logrocket.com/create-react-app-and-tailwindcss/)
+
 ## Available Scripts
 
 In the project directory, you can run:
