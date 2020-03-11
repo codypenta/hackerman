@@ -12,6 +12,7 @@
     "@types/react-dom": "^16.9.0",
     "autoprefixer": "^9.7.4",
     "axios": "^0.19.2",
+    "lodash": "^4.17.15",
     "postcss-cli": "^7.1.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -41,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "react-addons-test-utils": "^15.6.2",
     "react-test-render": "^1.1.2",
     "tailwindcss": "^1.2.0"
   }
