@@ -1,8 +1,7 @@
 import React from 'react';
-// import { render } from '@testing-library/react';  // Comes pre-installed with React?
+// import { render } from '@testing-library/react';  // Comes pre-installed with Create-React-App?
 import renderer from 'react-test-render';         // Jest Documentation says use this?
 import App from './App';
-import { render } from '@testing-library/react';
 import List, { Item } from './List';
 import SearchForm from './SearchForm';
 import axios from 'axios';
