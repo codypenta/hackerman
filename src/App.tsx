@@ -13,8 +13,8 @@ type Story = {
   url: string;
   title: string;
   author: string;
-  num_comments: number;
-  points: number;
+  num_comments: string;
+  points: string;
 };
 type Stories = Array<Story>;
 
