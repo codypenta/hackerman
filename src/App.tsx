@@ -145,7 +145,13 @@ export default function App(): JSX.Element {
 
   return (
     <div>
-      <h2>My Hacker Stories</h2>
+      <div className="lg:flex lg:items-center lg:justify-between">
+        <div className="flex-1 min-w-0">
+          <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+            My Hacker Stories
+          </h2>
+        </div>
+      </div>
 
       <SearchForm
         searchTerm={searchTerm}

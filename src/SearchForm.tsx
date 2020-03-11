@@ -25,11 +25,10 @@ const SearchForm = ({
       isFocused
       onInputChange={onSearchInput}
     >
-      <strong>Search</strong>
     </InputWithLabel>
 
-    <button type="submit" disabled={!searchTerm}>
-      Submit
+    <button type="submit" disabled={!searchTerm} className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1" style={{ transition: 'all .15s ease' }}>
+      Search
     </button>
   </form>
 );

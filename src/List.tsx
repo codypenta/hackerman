@@ -1,4 +1,5 @@
 import React from 'react';
+import { sortBy } from 'lodash';
 
 // The structure typing of what resposne we get back from the API
 type Story = {
@@ -6,8 +7,8 @@ type Story = {
     url: string;
     title: string;
     author: string;
-    num_comments: number;
-    points: number;
+    num_comments: string;
+    points: string;
 };
 type Stories = Array<Story>;
 
@@ -27,38 +28,71 @@ type ListProps = {
     onRemoveItem: (item: Story) => void;
 }
 
-const List = ({ list, onRemoveItem }: ListProps) => (
-    <div className="flex flex-col">
-        <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-            <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-                <table className="min-w-full">
-                    <thead>
-                        <tr>
-                            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Title
-                            </th>
-                            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Comments
-                            </th>
-                            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Points
-                            </th>
-                            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                Actions
-                            </th>
-                            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white">
-                        {list.map(item => (
-                            <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
-                        ))}
-                    </tbody>
-                </table>
+const SORTS: any = {
+    NONE: (list: any) => list,
+    TITLE: (list: any) => sortBy(list, 'title'),
+    AUTHOR: (list: any) => sortBy(list, 'author'),
+    COMMENT: (list: any) => sortBy(list, 'num_comments').reverse(),
+    POINT: (list: any) => sortBy(list, 'points').reverse(),
+}
+
+const List = ({ list, onRemoveItem }: ListProps) => {
+    const [sort, setSort] = React.useState('NONE');
+
+    const handleSort = (sortKey: any) => {
+        setSort(sortKey);
+    };
+
+    const sortFunction = SORTS[sort];
+    let sortedList = sortFunction(list);
+
+    console.log(sortedList)
+    console.log(sortFunction)
+
+    return (
+        <div className="flex flex-col">
+            <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                    <table className="min-w-full">
+                        <thead>
+                            <tr>
+                                <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    <button type="button" onClick={() => handleSort('TITLE')}>
+                                        Title
+                                    </button>
+                                </th>
+                                <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    <button type="button" onClick={() => handleSort('AUTHOR')}>
+                                        Author
+                                    </button>
+                                </th>
+                                <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    <button type="button" onClick={() => handleSort('COMMENT')}>
+                                        Comments
+                                    </button>
+                                </th>
+                                <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    <button type="button" onClick={() => handleSort('POINT')}>
+                                        Points
+                                    </button>
+                                </th>
+                                <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Actions
+                                </th>
+                                <th className="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-white">
+                            {sortedList.map((item: any) => (
+                                <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-)
+    )
+}
 
 /**
 * Item Component
@@ -87,9 +121,11 @@ export const Item = ({ item, onRemoveItem }: ItemProps) => {
                     </div>
                     <div className="ml-4">
                         <div className="text-sm leading-5 font-medium text-gray-900"><a href={item.url}>{item.title}</a></div>
-                        <div className="text-sm leading-5 text-gray-500"><span>{item.author}</span></div>
                     </div>
                 </div>
+            </td>
+            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <div className="text-sm leading-5 text-gray-900">{item.author}</div>
             </td>
             <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <div className="text-sm leading-5 text-gray-900">{item.num_comments}</div>
