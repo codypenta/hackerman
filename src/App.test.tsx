@@ -25,8 +25,8 @@ describe('Item', () => {
     title: 'React',
     url: 'https://reactjs.org',
     author: 'Jordan Walke',
-    num_comments: 3,
-    points: 4,
+    num_comments: '3',
+    points: '4',
     objectID: '0',
   };
   const handleRemoveItem = jest.fn()
@@ -67,16 +67,16 @@ describe('List', () => {
       title: 'React',
       url: 'https://reactjs.org',
       author: 'Jordan Walke',
-      num_comments: 3,
-      points: 4,
+      num_comments: '3',
+      points: '4',
       objectID: '0',
     },
     {
       title: 'Redux',
       url: 'https://redux.js.org',
       author: 'Dan Abramove, Andrew Clark',
-      num_comments: 2,
-      points: 5,
+      num_comments: '2',
+      points: '5',
       objectID: '0',
     }
   ]
