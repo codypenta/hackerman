@@ -37,14 +37,21 @@ const SORTS: any = {
 }
 
 const List = ({ list, onRemoveItem }: ListProps) => {
-    const [sort, setSort] = React.useState('NONE');
+    const [sort, setSort] = React.useState({
+        sortKey: 'NONE',
+        isReverse: false,
+    });
 
     const handleSort = (sortKey: any) => {
-        setSort(sortKey);
+        const isReverse = sort.sortKey === sortKey && !sort.isReverse;
+
+        setSort({ sortKey, isReverse });
     };
 
-    const sortFunction = SORTS[sort];
-    let sortedList = sortFunction(list);
+    const sortFunction = SORTS[sort.sortKey];
+    let sortedList = sort.isReverse
+        ? sortFunction(list).reverse()
+        : sortFunction(list);
 
     console.log(sortedList)
     console.log(sortFunction)
